@@ -1,0 +1,41 @@
+<div class="feed-messages-container">
+  <div class="feed-message" *ngFor="let message of data;let i=index" (click)="expandMessage(message)">
+    <div class="message-icon">
+      <img *ngIf="!message.pUser.image" class="photo-icon" src="{{ ( 'avatar' | baProfilePicture ) }}">
+      <img *ngIf="message.pUser.image" class="photo-icon" src="{{message.pUser.image}}">
+    </div>
+    <!--<div class="message-icon" *ngIf="message.type != 'text-message'">-->
+    <!--<img class="photo-icon" src="{{ ( message.author | baProfilePicture ) }}">-->
+    <!--<span class="sub-photo-icon" [ngClass]="message.type"></span>-->
+    <!--</div>-->
+
+    <div class="text-block text-message">
+      <div class="message-header">
+        <span class="author">{{ message.pUser.username }}
+          <!--<a href="{{ message.user.email }}" target="_blank"> {{ message.user.email }}</a>-->
+        </span>
+        <div class="message-options">
+          <i class="socicon starticon" (click)="startSearch(message.request,message.requestId)">L</i>
+          <i class="ion-close-round cancelicon" (click)="closeSearch(i,message.pUser.email,message.requestId,message.request)"></i>
+        </div>
+      </div>
+      <div class="message-content line-clamp" [ngClass]="{'line-clamp-2' : !message.expanded}">
+        <span *ngIf="message.preview">{{ message.email }} </span>{{ message.request }}
+      </div>
+      <div class="preview" [ngClass]="{'hidden': !message.expanded}" *ngIf="message.preview">
+        <!--<a href="{{ message.link }}" target="_blank">-->
+        <!--<img src="{{ ( message.preview | baAppPicture )}}">-->
+        <!--</a>-->
+      </div>
+      <div [ngClass]="{'hidden': !message.expanded}" class="message-time">
+
+         <div class="post-time">
+          Requested at - {{ message.createDateTime | date:'yyyy-MM-dd HH:mm a' }}
+        </div>
+        <div class="ago-time">
+          Previous Requests - {{ message.pUser.reputation }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

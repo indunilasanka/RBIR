@@ -1,0 +1,72 @@
+<div>
+  <div class="feed-messages-container">
+    <div class="feed-message" *ngFor="let document of searchResults" (click)="expandMessage(document)">
+      <div class="message-icon" >
+        <img class="photo-icon" src="{{path}}{{document.category}}.png">
+      </div>
+      <div class="text-block text-message">
+        <div class="message-header">
+          <span class="author">{{ document.title }}</span>
+          <span class="category">{{document.securityLevel}}</span>
+          <div class="message-options">
+               <!-- Trigger the modal with a button -->
+               <button type="button" class="btn btn-success btn-icon" (click)="openmodel(document.id,document.securityLevel)"><i class="ion-android-checkmark-circle"></i></button>
+          </div>
+        </div>
+        <div class="message-content line-clamp" [ngClass]="{'line-clamp-2' : !document.expanded}">
+          <span *ngFor="let sum of document.summary">
+             <br>            
+             <div style="font-size: larger;" [innerHTML]="sum">
+             </div>
+          </span>
+        </div>
+        <!--<div class="preview" [ngClass]="{'hidden': !document.expanded}" *ngIf="document.preview">-->
+          <!--<a href="{{ document.link }}" target="_blank">-->
+            <!--<img src="{{ ( document.preview | baAppPicture )}}">-->
+          <!--</a>-->
+        <!--</div>-->
+        <div [ngClass]="{'hidden': !document.expanded}" class="message-time">
+          <div class="post-time">
+            to dat
+          </div>
+          <div class="ago-time">
+            12 min ago
+          </div>
+        </div>
+        <!--<i aria-hidden="true" class="ion-checkmark-circled form-control-feedback"></i>-->
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+<!--<div clarequestsfeed-message">-->
+  <!--&lt;!&ndash;&ndash;&gt;<div class="message-icon">-->
+  <!--<img class="photo-icon" src="assets/img/app/profile/Kostya.png">-->
+<!--</div>-->
+  <!--&lt;!&ndash;&ndash;&gt;-->
+  <!--<div class="text-block text-message">-->
+    <!--<div class="message-header">-->
+      <!--<span class="author">Kostya Danovsky</span>-->
+    <!--</div>-->
+    <!--<div class="message-content line-clamp line-clamp-2">-->
+      <!--&lt;!&ndash;&ndash;&gt;Guys, check this out:-->
+      <!--A police officer found a perfect hiding place for watching for speeding motorists. One day, the officer was amazed when everyone was under the speed limit, so he investigated and found the problem. A 10 years old boy was standing on the side of the road with a huge hand painted sign which said "Radar Trap Ahead." A little more investigative work led the officer to the boy's accomplice: another boy about 100 yards beyond the radar trap with a sign reading "TIPS" and a bucket at his feet full of change.-->
+    <!--</div>-->
+    <!--&lt;!&ndash;&ndash;&gt;-->
+    <!--<div class="message-time hidden">-->
+      <!--<div class="post-time">-->
+        <!--Today 11:55 pm-->
+      <!--</div>-->
+      <!--<div class="ago-time">-->
+        <!--25 minutes ago-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+

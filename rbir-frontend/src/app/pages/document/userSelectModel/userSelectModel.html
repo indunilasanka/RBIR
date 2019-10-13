@@ -1,0 +1,20 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title"> Request release permission </h4>
+    <button class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+      <ul class="list-group">
+          <button  *ngFor="let user of data" type="button" class="list-group-item list-group-item-action" (click)="sendResultForConfirmation(user.username)">
+            <img *ngIf="!data" class="col-3" style="border-radius: 50%;" src="{{ ( user.image ||  (user.name | baProfilePicture)) }}">
+            <img *ngIf="data" class="col-3" style="border-radius: 50%;" [src]="'data:image/jpg;base64,'+user.image">
+            <div class="column col-9">
+              <span *ngIf="user.username" >  {{user.username}} -</span>
+              <span *ngIf="user.level">  {{user.level}}</span>
+            </div>
+          </button>
+      </ul>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="row">
+<div class="col-xlg-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+  <ba-card title="File Uploader" baCardClass="large-card">
+      
+    <label>Enter number of security levels</label>
+      <div class="input-group">
+        <input #numberOfLevels type="number" class="form-control">
+        <span class="input-group-btn">
+          <button class="btn btn-success btn-raised" type="button" (click)="setSecurityLevel(numberOfLevels.value);">OK</button>
+        </span>
+      </div>
+      
+      <div class="form-group">
+        <label> Select security level </label>
+        <select #lvlSelect class="form-control" (click)="setSelectedLvl(lvlSelect.value)">
+          <option  [value]="levl" *ngFor = "let levl of securityLvls;"  >{{levl| replaceUnderscore}}</option>
+        </select>
+      </div>
+      
+      <div *ngIf="!selectSingleFile">
+      <input #fileUpload ngFileSelect type="file" webkitdirectory directory multiple  (change)="beforeFileUpload($event)" hidden="true">
+      <div class="input-group" [ngClass]="{uploading: uploadFileInProgress}">
+        <input #inputText type="text" value= {{fileName}} class="form-control" readonly>
+        <span class="input-group-btn">
+            <button class="btn btn-success btn-raised" type="button" [disabled]="!selectedLvl" (click)="bringFileSelector();">Browse</button>
+        </span>
+      </div>
+      </div>
+      
+      <div *ngIf="selectSingleFile">
+        <input  #singleFileUpload ngFileSelect type="file" (change)="beforeFileUpload($event)" hidden="true">
+        
+        <div class="input-group" [ngClass]="{uploading: uploadFileInProgress}">
+          <input #singleInputText type="text" value= {{fileName}} class="form-control" readonly>
+          <span class="input-group-btn">
+              <button class="btn btn-success btn-raised" type="button" [disabled]="!selectedLvl" (click)="bringFileSelector();">Browse</button>
+          </span>
+        </div>
+      </div>
+      
+      <ba-checkbox [(ngModel)]="selectSingleFile" [label]="'Choose single file'" [ngModelOptions]="{standalone: true}"></ba-checkbox>
+      
+      <ba-card title="INITIAL DOCUMENTS" baCardClass="medium-card with-scroll table-panel">
+        <div class="horizontal-scroll">
+          <table class="table table-hover">
+            <tbody>
+              <tr *ngFor="let document of documents" class="no-top-border">
+                <td style="text-align: left">
+                 {{ document.file.name }}
+                </td>
+                <td >
+                  {{document.securityLevel | secLvelel}}
+                </td>
+                <td >
+                  <button type="button" class="btn btn btn-danger btn-icon" (click)="removeDocument(document)"><i class="ion-close-round"></i></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </ba-card>
+      
+      <div class="button-wrapper" align="right">
+        <button type="button" class="btn btn-success btn-raised"  (click)="startFileupload()" [disabled]="submited">Submit</button>
+      </div>
+    </ba-card>
+  </div>
+  
+  <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+    <ba-card title="Clasification Result" baCardClass="large-card">
+      <!-- <result-chart #main [(getResult)] = "bindResult"></result-chart> -->
+      <result-chart #childComponent2></result-chart>
+    </ba-card>
+  </div>
+</div>
+
+
+<modal #modal>
+  <modal-header [show-close]="true">
+    <h4 class="modal-title">{{popupTitle}}</h4>
+  </modal-header>
+  <modal-body>
+    {{popupMessage}}
+  </modal-body>
+  <modal-footer [show-default-buttons]="true"></modal-footer>
+</modal>
+

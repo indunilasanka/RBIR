@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-xlg-9 col-xl-6 col-lg-6  col-md-12 col-sm-12 col-12">
+    <div>
+              <button type="button" class="btn btn-success btn-icon" (click)="refreshRequest()"><i class="ion-android-checkmark-circle"></i></button>
+            </div>
+    <ba-card title="Information Request"
+             baCardClass="large-card with-scroll feed-panel">
+             
+      <request #childComponent (requestSender)="someMethod($event)" (requestIdSender)="someMethod2($event)"></request>
+    </ba-card>
+  </div>
+
+  <div class="col-xlg-9 col-xl-6 col-lg-6  col-md-12 col-sm-12 col-12">
+    <div class="input-group">
+      <span class="input-group-addon input-group-addon-primary addon-left" id="basic-addon1" (click)="searchDocuments(searchQuary.value)"><i
+        class="ion-ios-search-strong" ng-click="startSearch()"></i></span>
+      <input aria-describedby="basic-addon1" class="form-control with-primary-addon" placeholder="Search for..."
+             type="text" #searchQuary value={{quary}} (keyup.enter)="(searchQuary.value)">
+    </div>
+    <ba-checkbox [(ngModel)]="isChecked" [label]="'Give me exact search.'" [ngModelOptions]="{standalone: true}"></ba-checkbox>
+    <ba-card title="Search result"
+             baCardClass="large-card with-scroll feed-panel">
+      <search-result [reqId]="reqId" [searchResults]="searchResults"></search-result>
+    </ba-card>
+  </div>
+</div>
+
+

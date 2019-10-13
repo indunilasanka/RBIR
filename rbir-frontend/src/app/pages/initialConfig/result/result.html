@@ -1,0 +1,29 @@
+<div>
+    <div class="col-md-12 col-lg-12 result-cd" >
+      <ba-chartist-chart baChartistChartClass="ct-chart stacked-bar"
+                       baChartistChartType="Pie"
+                       [baChartistChartData]="data['labelsPieData']"
+                       [baChartistChartOptions]="data['labelsPieOptions']">
+      </ba-chartist-chart>
+    </div>
+  
+  <ba-card baCardClass="xmedium-card with-scroll table-panel">
+    <div class="horizontal-scroll">
+      <table class="table table-hover">
+        <tbody>
+          <tr *ngFor="let result of results" class="no-top-border">
+            <td style="text-align: left">
+             {{ result.fileName }}
+            </td>
+            <td >
+              {{result.fileCategory}}
+            </td>
+            <td >
+              {{result.securityLvl}}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ba-card>
+</div>

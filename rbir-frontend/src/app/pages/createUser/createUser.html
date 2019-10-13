@@ -1,0 +1,59 @@
+<ba-card title="Create User" baCardClass="xmedium-card col-xlg-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" class="form-horizontal">
+        <div class="form-group row" [ngClass]="{'has-error': (!name.valid && name.touched), 'has-success': (name.valid && name.touched)}">
+          <label for="inputName3" class="col-sm-3 control-label">First Name</label>
+  
+          <div class="col-sm-9">
+            <input [formControl]="name" type="text" class="form-control" id="inputName3" placeholder="First Name">
+          </div>
+        </div>
+        <div class="form-group row" [ngClass]="{'has-error': (!lname.valid && lname.touched), 'has-success': (lname.valid && lname.touched)}">
+            <label for="inputName4" class="col-sm-3 control-label">Last Name</label>
+    
+            <div class="col-sm-9">
+              <input [formControl]="lname" type="text" class="form-control" id="inputName4" placeholder="Last Name">
+            </div>
+          </div>
+        <div class="form-group row" [ngClass]="{'has-error': (!email.valid && email.touched), 'has-success': (email.valid && email.touched)}">
+          <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+  
+          <div class="col-sm-9">
+            <input [formControl]="email" type="email" class="form-control" id="inputEmail3" placeholder="Email">
+          </div>
+        </div>
+
+        <div class="form-group row" [ngClass]="{'has-error': (!level.valid && level.touched), 'has-success': (level.valid && level.touched)}">
+          <label for="inputEmail3" class="col-sm-3 control-label">Level</label>
+  
+          <div class="col-sm-9">
+            <input [formControl]="level" min="1" type="number" class="form-control" id="inputEmail3">
+          </div>
+        </div>
+
+
+        <div class="form-group row" [ngClass]="{'has-error': (!password.valid && password.touched), 'has-success': (password.valid && password.touched)}">
+          <label for="inputPassword3" class="col-sm-3 control-label">Password</label>
+  
+          <div class="col-sm-9">
+            <input [formControl]="password" type="password" class="form-control" id="inputPassword3" placeholder="Password">
+          </div>
+        </div>
+        <div class="form-group row" [ngClass]="{'has-error': (!repeatPassword.valid && repeatPassword.touched), 'has-success': (repeatPassword.valid && repeatPassword.touched)}">
+          <label for="inputPassword4" class="col-sm-3 control-label">Repeat</label>
+  
+          <div class="col-sm-9">
+            <input [formControl]="repeatPassword" type="password" class="form-control" id="inputPassword4" placeholder="Repeat">
+            <span *ngIf="!passwords.valid && (password.touched || repeatPassword.touched)" class="help-block sub-little-text">Passwords don't match.</span>
+          </div>
+        </div>
+        <div class="form-group row">
+          <div class="offset-sm-3 col-sm-9">
+            <button [disabled]="!form.valid" type="submit" class="btn btn-default btn-auth">Create</button>
+          </div>
+        </div>
+      </form>
+</ba-card>
+
+
+
+

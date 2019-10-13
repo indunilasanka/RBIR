@@ -1,0 +1,59 @@
+<div class="row">
+  <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+    <ba-card title="File Uploader" baCardClass="large-card">
+      <div *ngIf="!selectSingleFile">
+   
+        <input  #fileUpload ngFileSelect type="file" webkitdirectory directory multiple (change)="beforeFileUpload($event)" hidden="true">
+        <div class="input-group" [ngClass]="{uploading: uploadFileInProgress}">
+          <input #inputText type="text" value= {{fileName}} class="form-control" readonly>
+          <span class="input-group-btn">
+             <button class="btn btn-success btn-raised" type="button" (click)="bringFileSelector();">Browse</button>
+          </span>
+        </div>
+      </div>
+  
+  <div *ngIf="selectSingleFile">
+      <input  #singleFileUpload ngFileSelect type="file" (change)="beforeFileUpload($event)" hidden="true">
+      
+      <div class="input-group" [ngClass]="{uploading: uploadFileInProgress}">
+        <input #singleInputText type="text" value= {{fileName}} class="form-control" readonly>
+        <span class="input-group-btn">
+            <button class="btn btn-success btn-raised" type="button" (click)="bringFileSelector();">Browse</button>
+        </span>
+      </div>
+    </div>
+  
+  <ba-checkbox [(ngModel)]="selectSingleFile" [label]="'Choose single file.'" [ngModelOptions]="{standalone: true}"></ba-checkbox>
+  
+  <!-- <ba-card title="Hover Rows" baCardClass="xmedium-card with-scroll table-panel" (window:resize)="onResize($event)">  -->
+  <ba-card title="Hover Rows" baCardClass="xmedium-card with-scroll table-panel" > 
+    <div class="horizontal-scroll" >
+      <table class="table table-hover">
+        <tbody>
+          <tr *ngFor="let document of fileList" class="no-top-border">
+            <td class="col-md-11" style="text-align: lef  t">
+             {{ document.name | trimFileName: 400}}
+            </td>
+          <td class="col-md-1">
+            <button type="button" class="btn btn btn-danger btn-icon" (click)="removeDocument(document)"><i class="ion-close-round"></i></button>
+          </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </ba-card>
+  
+  <div class="button-wrapper" align="right">
+    <button type="button" class="btn btn-success btn-raised" (click)="startFileupload()">Submit</button>
+  </div>
+    </ba-card>
+  </div>
+
+  <div class="col-xlg-6 col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+    <ba-card title="Clasification Result" baCardClass="large-card">      
+        <result-chart #childComponent></result-chart>
+    </ba-card>
+  </div>
+</div>
+
+

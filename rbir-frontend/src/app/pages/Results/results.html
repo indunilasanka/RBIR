@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-xlg-9 col-xl-6 col-lg-6  col-md-12 col-sm-12 col-12">
+        <div>
+              <button type="button" class="btn btn-success btn-icon" (click)="refreshResults()"><i class="ion-android-checkmark-circle"></i></button>
+            </div>
+    <ba-card title="Information Request"
+             baCardClass="large-card with-scroll feed-panel">
+      <confirmresults #childComponent2   (requestSender)="someMethod($event)"></confirmresults>
+    </ba-card>
+  </div>
+  </div>

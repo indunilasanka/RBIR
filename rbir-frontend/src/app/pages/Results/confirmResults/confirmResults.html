@@ -1,0 +1,42 @@
+<div>
+  <div class="feed-messages-container">
+    <div class="feed-message" *ngFor="let document of searchResults" (click)="expandMessage(document)">
+      <div class="message-icon" >
+        <img class="photo-icon" src="{{path}}">
+      </div>
+      <div class="text-block text-message">
+        <div class="message-header">
+          <span class="author">{{ document.title }}</span>
+          <span class="category">{{document.securityLevel}}</span>
+          <div class="message-options">
+               <!-- Trigger the modal with a button -->
+               <div class="button-wrapper">
+                <button type="button" class="btn btn-success  btn-xs" (click)="confirm(document.filePath)">Confirm</button>
+                <button type="button" class="btn btn-warning  btn-xs" (click)="cancel()">Cancel</button>
+                <button type="button" class="btn btn-danger  btn-xs" (click)="reject()">Reject</button>
+              </div>
+            
+               <!--<button type="button" class="btn btn-success btn-icon" ><i class="ion-android-checkmark-circle"></i></button>-->
+          </div>
+        </div>
+        <div class="message-content line-clamp" [ngClass]="{'line-clamp-2' : !document.expanded}">
+          <span *ngFor="let sum of document.summary">
+             <br>            
+             <div style="font-size: larger;" [innerHTML]="sum">
+             </div>
+          </span>
+        </div>
+        <!--<div class="preview" [ngClass]="{'hidden': !document.expanded}" *ngIf="document.preview">-->
+          <!--<a href="{{ document.link }}" target="_blank">-->
+            <!--<img src="{{ ( document.preview | baAppPicture )}}">-->
+          <!--</a>-->
+        <!--</div>-->
+        <!--<i aria-hidden="true" class="ion-checkmark-circled form-control-feedback"></i>-->
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
